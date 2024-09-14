@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class MyTheme{
-static ThemeData LightTheme(BuildContext) =>ThemeData(
+static ThemeData  LightTheme(BuildContext) => ThemeData(
   fontFamily: GoogleFonts.lato().fontFamily,
   appBarTheme: AppBarTheme(
     color: Colors.white,
