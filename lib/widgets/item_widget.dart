@@ -12,9 +12,9 @@ class ItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: ListTile(
-          leading: Image.network(item.image ?? "no image found"),
-          title: Text(item.name ?? "having no name"),
-          subtitle: Text(item.desc ?? " "),
+          leading: Image.network(item.image),
+          title: Text(item.name ),
+          subtitle: Text(item.desc ),
 
           trailing: Text("\$${item.price}",style: TextStyle(
             color: Colors.deepPurple,

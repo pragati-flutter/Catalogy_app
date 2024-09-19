@@ -1,14 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/widgets/item_widget.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_catalog/widgets/themes.dart';
 import 'dart:convert';
 
+import 'package:velocity_x/velocity_x.dart';
 
+import '../widgets/home_widgets/catalog_header.dart';
+import '../widgets/home_widgets/catalog_list.dart';
 
- class HomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
 
   const HomePage({super.key});
 
@@ -47,83 +53,31 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Catalog App"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child:(CatalogModel.items!= null &&  CatalogModel.items.isNotEmpty)? ListView.builder(
-            itemCount:CatalogModel.items.length,
-            itemBuilder: (context, index) {
-              return ItemWidget(
-                item: CatalogModel.items[index],
-              );
-            }
-            ):Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
-
-
-
-
-
-      drawer: Drawer(
-        width: 260,
+      backgroundColor: MyTheme.creamColor,
+      body: SafeArea(
         child: Container(
-          color: Colors.deepPurple.shade200,
-          child: ListView(
-            children: [
-              DrawerHeader(
-                  padding: EdgeInsets.zero,
-                  child: UserAccountsDrawerHeader(
-                      accountName: const Text("Pragati Mishra"),
-                      accountEmail: const Text("example@gmail.com"),
-                      currentAccountPicture: CircleAvatar(
-                        radius: 70,
-                        backgroundImage: NetworkImage(imageUrl),
-                      ))),
-              const ListTile(
-                leading: Icon(
-                  CupertinoIcons.home,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  "Home",
-                  // textScaleFactor: 1.2,
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              const ListTile(
-                leading: Icon(
-                  CupertinoIcons.profile_circled,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  "Profile",
-                  // textScaleFactor: 1.2,
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              const ListTile(
-                leading: Icon(
-                  CupertinoIcons.mail,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  "Email me",
-                  // textScaleFactor: 1.2,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
+          padding: Vx.m32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CatalogHeader(),
+
+        if(CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+         CatalogList().expand()
+        else
+
+             CircularProgressIndicator().centered().expand(),
+          
+      ],
           ),
         ),
       ),
     );
+
   }
-}
+
+  }
+
+
+

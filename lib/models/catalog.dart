@@ -1,18 +1,18 @@
 class Item {
-   int ? id;
-   String ? name;
-  String ? desc;
-   num ? price;
-  String ? color;
-  String ? image;
+   int  id;
+   String  name;
+  String  desc;
+   num  price;
+  String  color;
+  String  image;
 
   Item(
-      { this.id,
-      this.name,
-    this.desc,
-      this.price,
-      this.color,
-       this.image}
+      { required this.id,
+      required this.name,
+    required this.desc,
+     required this.price,
+    required  this.color,
+      required this.image}
       );
   factory Item.fromMap(Map<String,dynamic>map){
     return Item(
