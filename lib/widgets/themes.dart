@@ -11,6 +11,7 @@ static ThemeData  LightTheme(BuildContext) => ThemeData(
   colorScheme: ColorScheme.light(
     primary:darkBluishColor,
     secondary:darkBluishColor,
+
   ),
 
 
@@ -29,7 +30,7 @@ static ThemeData darkTheme(context)=> ThemeData(
   cardColor: Colors.black,
   canvasColor: darkCreamColor,
   colorScheme: ColorScheme.light(
-    primary:darkBluishColor,
+    primary:lightBlueColor,
     secondary:Colors.white,
   ),
 
@@ -38,7 +39,8 @@ static ThemeData darkTheme(context)=> ThemeData(
     color: Colors.white,
 
     elevation: 0.0,
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: IconThemeData(color: Colors.white),
+    titleTextStyle: TextStyle(color: Colors.white),
 
   ),
 

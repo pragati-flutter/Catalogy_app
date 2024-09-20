@@ -15,10 +15,14 @@ class CatalogList extends StatelessWidget{
           shrinkWrap: true,
           itemCount: CatalogModel.items.length,
           itemBuilder: (context,index){
-            final catalog = CatalogModel.items[index];
+            final catalog = CatalogModel.getByPosition(index);
             return InkWell(
-              onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeDetailPage(
-                  catalog: catalog))),
+              onTap: ()=>Navigator.push
+                (context,MaterialPageRoute
+                (builder: (context)=>HomeDetailPage(
+                  catalog: CatalogModel.getById(2))
+              )
+              ),
                 child: CatalogItem(catalog: catalog));
           }
 
@@ -39,7 +43,7 @@ class CatalogItem extends StatelessWidget{
         children: [
           Hero(
             tag: Key(catalog.id.toString()),
-              child: CatalogImage(image: catalog.image,)),
+              child: CatalogImage(image: catalog.image,)).w40(context),
 
           Expanded(
               child: Column(
@@ -56,7 +60,7 @@ class CatalogItem extends StatelessWidget{
                         onPressed:(){} ,
                         style: ButtonStyle(
                           backgroundColor:WidgetStateProperty.all(
-                            MyTheme.darkBluishColor,
+                            context.primaryColor,
                           ) ,
                           shape: WidgetStateProperty.all(
                             StadiumBorder(),
@@ -66,14 +70,14 @@ class CatalogItem extends StatelessWidget{
                       )
                     ],
 
-                  )
+                  ).pOnly(right: 8.0)
                 ],
 
               ).py1(),
           ),
         ],
       ),
-    ).color(context.cardColor).rounded.square(150).make().py16();
+    ).color(context.cardColor).rounded.square(170).make().py16();
 
   }
 }

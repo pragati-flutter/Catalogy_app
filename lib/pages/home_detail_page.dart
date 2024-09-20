@@ -20,24 +20,27 @@ class HomeDetailPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
         ),
-           backgroundColor:MyTheme.creamColor,
-        bottomNavigationBar: ButtonBar(
-          alignment: MainAxisAlignment.spaceBetween,
-          children: [
-            "\$${catalog.price}".text.xl4.bold.red800.make(),
-            ElevatedButton(
-              onPressed:(){} ,style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(
-               MyTheme.darkBluishColor,
+           backgroundColor:context.canvasColor,
+        bottomNavigationBar: Container(
+          color: context.cardColor,
+          child: ButtonBar(
+            alignment: MainAxisAlignment.spaceBetween,
+            children: [
+              "\$${catalog.price}".text.xl4.bold.red800.make(),
+              ElevatedButton(
+                onPressed:(){} ,style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(
+                 context.primaryColor,
+                ),
+                shape: WidgetStateProperty.all(
+                  StadiumBorder(),
+                ),
               ),
-              shape: WidgetStateProperty.all(
-                StadiumBorder(),
-              ),
-            ),
-              child: "Add to Cart".text.color(Colors.white).make(),
-            ).wh(120,50),
-          ],
+                child: "Add to Cart".text.color(Colors.white).make(),
+              ).wh(120,50),
+            ],
 
+          ),
         ),
         body: SafeArea(
           bottom: false,
@@ -52,15 +55,19 @@ class HomeDetailPage extends StatelessWidget {
                     arcType: VxArcType.convey,
                     edge: VxEdge.top,
                     child: Container(
-                                color: Colors.white,
+                                color: context.cardColor,
                       width: context.screenWidth,
                       child: Column(
                         children: [
                 catalog.name.text.xl4
-            .color(MyTheme.darkBluishColor).bold.make(),
-                          catalog.desc.text.textStyle(context.captionStyle).xl.make(),
+            .color(Theme.of(context).colorScheme.secondary).bold.make(),
+                          catalog.desc.text.textStyle(context.captionStyle).xl.color(Theme.of(context).colorScheme.secondary).make(),
                           10.heightBox,
-"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. ".text.textStyle(context.captionStyle).make().p16(),
+"Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
+    "when an unknown printer"
+    " took a galley "
+    "of type. ".text.textStyle(context.captionStyle).color(Theme.of(context).colorScheme.secondary).make().p16(),
 
                         ],
                       ).py64(),
