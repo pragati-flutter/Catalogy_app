@@ -71,7 +71,7 @@ print("forms validate successfully");
               child:  Column(
               children: [
                   TextFormField(
-                    style:TextStyle(color: Colors.white),
+                    style:TextStyle(color: (Theme.of(context).colorScheme.secondary)),
                     decoration: InputDecoration(
                       hintText: "Username",
                       hintStyle: TextStyle(color:(Theme.of(context).colorScheme.secondary)),

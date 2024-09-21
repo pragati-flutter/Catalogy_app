@@ -34,13 +34,13 @@ class CatalogModel {
 
 
   ];
-static Item getById(int id) {
+Item getById(int id) {
   return items.firstWhere((element) {
     return element.id==id;
   },orElse: null);
 }
 
-static Item getByPosition(int pos) {
+Item getByPosition(int pos) {
   return items[pos];
 }
 
