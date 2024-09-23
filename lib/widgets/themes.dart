@@ -34,7 +34,6 @@ static ThemeData darkTheme(context)=> ThemeData(
     secondary:Colors.white,
   ),
 
-
   appBarTheme: AppBarTheme(
     color: Colors.white,
 

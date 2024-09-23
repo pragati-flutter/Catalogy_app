@@ -16,7 +16,6 @@ import '../widgets/home_widgets/catalog_header.dart';
 import '../widgets/home_widgets/catalog_list.dart';
 
 class HomePage extends StatefulWidget {
-
   const HomePage({super.key});
 
   @override
@@ -34,20 +33,17 @@ class _HomePageState extends State<HomePage> {
     loadData();
   }
 
-
   loadData() async {
     await Future.delayed(Duration(seconds: 2));
 
-    final catalogJson =
-    await rootBundle.loadString("files/catalog.Json");
+    final catalogJson = await rootBundle.loadString("files/catalog.Json");
     final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData["products"];
     CatalogModel.items = List.from(productsData).map<Item>((item) {
       return Item.fromMap(item);
     }).toList();
-    setState(() {
 
-     });
+    setState(() {});
   }
 
 
@@ -57,7 +53,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=> Navigator.pushNamed(context,MyRoutes.cartRoute),
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
         child: Icon(CupertinoIcons.cart),
       ),
       body: SafeArea(
@@ -65,24 +61,17 @@ class _HomePageState extends State<HomePage> {
           padding: Vx.m32,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CatalogHeader(),
+            children: [
+              CatalogHeader(),
+              if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                const CatalogList().py16().expand()
 
-        if(CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-         CatalogList().py16().expand()
-        else
-
-             CircularProgressIndicator().centered().expand(),
-          
-      ],
+               else
+                const CircularProgressIndicator().centered().expand(),
+            ],
           ),
         ),
       ),
     );
-
   }
-
-  }
-
-
-
+}
