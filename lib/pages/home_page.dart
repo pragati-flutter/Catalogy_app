@@ -2,12 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/util/routes.dart';
-import 'package:flutter_catalog/widgets/item_widget.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
 import 'dart:convert';
 
 import 'package:velocity_x/velocity_x.dart';

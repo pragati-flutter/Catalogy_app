@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
+import 'package:flutter_catalog/widgets/home_widgets/add_to_cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../models/catalog.dart';
@@ -8,9 +8,8 @@ import '../models/catalog.dart';
 class HomeDetailPage extends StatelessWidget {
   final Item catalog;
 
-  const HomeDetailPage({Key ? key, required this.catalog})
-      :assert(catalog != null),
-        super(key: key);
+  const HomeDetailPage({super.key, required this.catalog});
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +26,8 @@ class HomeDetailPage extends StatelessWidget {
             alignment: MainAxisAlignment.spaceBetween,
             children: [
               "\$${catalog.price}".text.xl4.bold.red800.make(),
-              ElevatedButton(
-                onPressed:(){} ,style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                 context.primaryColor,
-                ),
-                shape: WidgetStateProperty.all(
-                  StadiumBorder(),
-                ),
-              ),
-                child: "Add to Cart".text.color(Colors.white).make(),
-              ).wh(120,50),
+              AddToCard(catalog: catalog).wh(120, 50),
+
             ],
 
           ),
