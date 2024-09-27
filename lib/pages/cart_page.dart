@@ -40,7 +40,7 @@ class CartTotal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
          VxConsumer(
-           notifications: {},
+           notifications: const {},
            mutations: const {RemoveMutation},
 
          builder:(context,store,status){

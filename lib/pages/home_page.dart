@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_catalog/core/core.dart';
+import 'package:flutter_catalog/models/cart.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/util/routes.dart';
 import 'dart:convert';
@@ -30,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     final catalogJson = await rootBundle.loadString("files/catalog.Json");
     final decodedData = jsonDecode(catalogJson);
@@ -46,11 +48,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = (VxState.store as MyStore).cart;
     return Scaffold(
       backgroundColor: context.canvasColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-        child: Icon(CupertinoIcons.cart),
+      floatingActionButton: VxBuilder(
+        mutations: const {AddMutation,RemoveMutation},
+        builder: (context,store,status)=>FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+          child: const Icon(CupertinoIcons.cart),
+        ).badge(color: Vx.red500,size: 22,count: cart.items.length,
+        textStyle: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        )),
       ),
       body: SafeArea(
         child: Container(
